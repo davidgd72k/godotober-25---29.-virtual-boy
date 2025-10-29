@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://b1pluf6y60nl2"]
+[gd_scene load_steps=13 format=3 uid="uid://b1pluf6y60nl2"]
 
 [ext_resource type="Script" uid="uid://cju31863l651p" path="res://scenes/main.gd" id="1_o5qli"]
+[ext_resource type="Shader" uid="uid://8x3bgqjdrkun" path="res://shaders/posterizer_2d.gdshader" id="2_0wfyh"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_o5qli"]
 top_radius = 0.3
@@ -31,6 +32,16 @@ size = Vector3(17.139648, 1.5037231, 18.606445)
 
 [sub_resource type="SphereMesh" id="SphereMesh_o5qli"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sugp2"]
+shader = ExtResource("2_0wfyh")
+shader_parameter/level1 = Color(0, 0, 0, 1)
+shader_parameter/level2 = Color(0.33333334, 0, 0, 1)
+shader_parameter/level3 = Color(0.6431373, 0, 0, 1)
+shader_parameter/level4 = Color(0.9372549, 0, 0, 1)
+shader_parameter/threshold1 = 0.4
+shader_parameter/threshold2 = 0.52
+shader_parameter/threshold3 = 0.8
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_o5qli")
 
@@ -52,7 +63,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5139575, 0)
 mesh = SubResource("CylinderMesh_0wfyh")
 
 [node name="CubeMesh" type="MeshInstance3D" parent="Decorations"]
-transform = Transform3D(0.923351, 0, -0.38395694, 0, 1, 0, 0.38395694, 0, 0.923351, 2.1310608, 0.47100854, -2.4379294)
+transform = Transform3D(0.75613916, 0, -0.654411, 0, 1, 0, 0.654411, 0, 0.75613916, 2.1310608, 0.47100854, -2.4379292)
 mesh = SubResource("BoxMesh_sgp6g")
 
 [node name="ConeMesh" type="MeshInstance3D" parent="Decorations"]
@@ -64,7 +75,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5420809, 1.0884974, -3.8328
 mesh = SubResource("SphereMesh_sgp6g")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3419513, 2.8511238)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.333687, 3.849185)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.9296351, 0, -0.36848155, 0.36847812, -0.0043283403, 0.92962635, -0.0015949011, -0.99999064, -0.0040237606, -8.081597, 0, -0.31384373)
@@ -89,3 +100,14 @@ transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, -0.48
 [node name="MeshInstance3D" type="MeshInstance3D" parent="OrbitalPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.8763745, 0)
 mesh = SubResource("SphereMesh_o5qli")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_sugp2")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

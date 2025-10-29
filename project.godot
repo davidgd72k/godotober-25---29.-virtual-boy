@@ -18,3 +18,8 @@ config/icon="res://icon.svg"
 [display]
 
 window/stretch/mode="canvas_items"
+
+[editor]
+
+movie_writer/video_quality=1.0
+movie_writer/movie_file="C:/Users/David/Documents/Godot4_repo/stable/Challenges/clips/vb.avi"
