@@ -14,3 +14,7 @@ config/name="Godotober25 - 29. Virtual Boy"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="canvas_items"
