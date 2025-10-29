@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=3 uid="uid://b1pluf6y60nl2"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_o5qli"]
+top_radius = 0.3
+bottom_radius = 0.4
+height = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0wfyh"]
+top_radius = 0.0
+bottom_radius = 0.7
+height = 1.2
+
+[sub_resource type="BoxMesh" id="BoxMesh_sgp6g"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_sgp6g"]
+top_radius = 0.0
+height = 1.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_sgp6g"]
+
+[sub_resource type="Environment" id="Environment_sgp6g"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_sgp6g"]
+size = Vector2(20, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sgp6g"]
+size = Vector3(17.139648, 1.5037231, 18.606445)
+
+[node name="Main" type="Node3D"]
+
+[node name="Decorations" type="Node3D" parent="."]
+
+[node name="Tree3D" type="Node3D" parent="Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2907506, 0.4710083, -3.8772378)
+
+[node name="TrunkMesh" type="CSGMesh3D" parent="Decorations/Tree3D"]
+mesh = SubResource("CylinderMesh_o5qli")
+
+[node name="LeafBottomMesh" type="CSGMesh3D" parent="Decorations/Tree3D/TrunkMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93719625, 0)
+mesh = SubResource("CylinderMesh_0wfyh")
+
+[node name="LeafBottomMesh2" type="CSGMesh3D" parent="Decorations/Tree3D/TrunkMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5139575, 0)
+mesh = SubResource("CylinderMesh_0wfyh")
+
+[node name="CubeMesh" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(0.923351, 0, -0.38395694, 0, 1, 0, 0.38395694, 0, 0.923351, 2.1310608, 0.47100854, -2.4379294)
+mesh = SubResource("BoxMesh_sgp6g")
+
+[node name="ConeMesh" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3623672, 0.72100854, -1.6837201)
+mesh = SubResource("CylinderMesh_sgp6g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5420809, 1.0884974, -3.8328104)
+mesh = SubResource("SphereMesh_sgp6g")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3419513, 2.4789934)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.9296351, 0, -0.36848155, 0.36847812, -0.0043283403, 0.92962635, -0.0015949011, -0.99999064, -0.0040237606, -8.081597, 0, -0.31384373)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sgp6g")
+
+[node name="GroundBody" type="StaticBody3D" parent="."]
+
+[node name="GroundMesh" type="MeshInstance3D" parent="GroundBody"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_sgp6g")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GroundBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7808533, 0)
+shape = SubResource("BoxShape3D_sgp6g")
